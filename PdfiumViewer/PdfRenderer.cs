@@ -61,6 +61,7 @@ namespace PdfiumViewer
         /// <summary>
         /// Gets or sets the currently focused page.
         /// </summary>
+        [DefaultValue(1)]
         public int Page
         {
             get
@@ -120,6 +121,7 @@ namespace PdfiumViewer
         /// <summary>
         /// Gets or sets the way the document should be zoomed initially.
         /// </summary>
+        [DefaultValue(PdfViewerZoomMode.FitHeight)]
         public PdfViewerZoomMode ZoomMode
         {
             get { return _zoomMode; }
@@ -147,6 +149,7 @@ namespace PdfiumViewer
         /// <summary>
         /// Gets or sets the current rotation of the PDF document.
         /// </summary>
+        [DefaultValue(PdfRotation.Rotate0)]
         public PdfRotation Rotation
         {
             get { return _rotation; }
@@ -843,7 +846,7 @@ namespace PdfiumViewer
 
             int height = (int)(scaledHeight + (ShadeBorder.Size.Vertical + PageMargin.Vertical) * Document.PageCount);
             int width = (int)(_maxWidth * _scaleFactor + ShadeBorder.Size.Horizontal + PageMargin.Horizontal);
-            
+
             var center = new Point(
                 DisplayRectangle.Width / 2,
                 DisplayRectangle.Height / 2
@@ -852,7 +855,8 @@ namespace PdfiumViewer
             if (
                 DisplayRectangle.Width > ClientSize.Width ||
                 DisplayRectangle.Height > ClientSize.Height
-            ) {
+            )
+            {
                 center.X += DisplayRectangle.Left;
                 center.Y += DisplayRectangle.Top;
             }

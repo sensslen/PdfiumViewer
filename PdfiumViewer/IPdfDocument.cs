@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
-using System.Text;
 
 namespace PdfiumViewer
 {
@@ -260,6 +259,7 @@ namespace PdfiumViewer
         /// <returns>The converted rectangle.</returns>
         Rectangle RectangleFromPdf(int page, RectangleF rect);
 
+        /// <summary>
         /// Get detailed information for all characters on the page.
         /// </summary>
         /// <param name="page">The page to get the information for.</param>

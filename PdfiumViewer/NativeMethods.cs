@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Win32.SafeHandles;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
-using System.Text;
-using System.Windows.Forms;
-using Microsoft.Win32.SafeHandles;
 
 namespace PdfiumViewer
 {
@@ -84,8 +81,10 @@ namespace PdfiumViewer
         [DllImport("user32.dll")]
         public static extern int ScrollWindowEx(IntPtr hWnd, int dx, int dy, IntPtr prcScroll, IntPtr prcClip, IntPtr hrgnUpdate, IntPtr prcUpdate, uint flags);
 
+#if NETFRAMEWORK
         [SecurityPermission(SecurityAction.InheritanceDemand, UnmanagedCode = true)]
         [SecurityPermission(SecurityAction.Demand, UnmanagedCode = true)]
+#endif
         public class MemoryMappedHandle : SafeHandleZeroOrMinusOneIsInvalid
         {
             public MemoryMappedHandle()
@@ -93,7 +92,9 @@ namespace PdfiumViewer
             {
             }
 
+#if NETFRAMEWORK
             [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+#endif
             protected override bool ReleaseHandle()
             {
                 return CloseHandle(handle);

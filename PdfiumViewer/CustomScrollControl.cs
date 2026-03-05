@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
-using System.Text;
 using System.Windows.Forms;
 
 #pragma warning disable 1591
@@ -349,8 +347,8 @@ namespace PdfiumViewer
         {
             bool needLayout = false;
 
-            double hScale = _displayRect.Height==0 ? 1 :(double)width / _displayRect.Width;
-            double vScale = _displayRect.Height==0? 1 : (double)height / _displayRect.Height;
+            double hScale = _displayRect.Height == 0 ? 1 : (double)width / _displayRect.Width;
+            double vScale = _displayRect.Height == 0 ? 1 : (double)height / _displayRect.Height;
 
             if (_displayRect.Width != width || _displayRect.Height != height)
             {
@@ -625,7 +623,9 @@ namespace PdfiumViewer
         }
 
         [EditorBrowsable(EditorBrowsableState.Advanced)]
+#if NETFRAMEWORK
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+#endif
         protected override void WndProc(ref System.Windows.Forms.Message m)
         {
             switch (m.Msg)

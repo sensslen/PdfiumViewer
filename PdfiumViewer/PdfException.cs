@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
 #pragma warning disable 1591
 
@@ -52,9 +50,11 @@ namespace PdfiumViewer
         {
         }
 
+#if NETFRAMEWORK
         protected PdfException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
+#endif
     }
 }
